@@ -1,0 +1,106 @@
+﻿@using System
+@inject Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper Html
+@{
+    Layout = null;
+}
+
+@functions {
+    // helper to set "active" class on navbar links
+    string IsActive(string controller, string action = null)
+    {
+        var routeData = ViewContext.RouteData;
+        var currentController = routeData.Values["controller"]?.ToString() ?? "";
+        var currentAction = routeData.Values["action"]?.ToString() ?? "";
+
+        if (!string.IsNullOrEmpty(action))
+        {
+            return string.Equals(controller, currentController, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(action, currentAction, StringComparison.OrdinalIgnoreCase)
+                ? "active" : "";
+        }
+
+        return string.Equals(controller, currentController, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - GymManagementSystem</title>
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        /* optional small tweak for active link */
+        .nav-link.active {
+            font-weight: 600;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">GainsGym</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("Home", "Index")" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("Members")" asp-controller="Members" asp-action="Index">Members</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("Trainers")" asp-controller="Trainers" asp-action="Index">Trainers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("Classes")" asp-controller="Classes" asp-action="Index">Classes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("Subscriptions")" asp-controller="Subscriptions" asp-action="Index">Subscriptions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("MemberClasses")" asp-controller="MemberClasses" asp-action="Index">Member Classes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @IsActive("Payments")" asp-controller="Payments" asp-action="Index">Payments</a>
+                        </li>
+                    </ul>
+
+                    <!-- optional right-side actions -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-4">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top py-3 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>&copy; @DateTime.Now.Year - GainsGym-ManagementSystem</div>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle (includes popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿@model GymMs.DAL.GymMs.DAL.Entities.MemberClass
+
+@{
+    ViewData["Title"] = "Assign Member to Class";
+}
+
+<h2>Assign Member to Class</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="MemberId" class="control-label">Member</label>
+        <select asp-for="MemberId" class="form-control" asp-items="ViewBag.Members"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="GymClassId" class="control-label">Class</label>
+        <select asp-for="GymClassId" class="form-control" asp-items="ViewBag.Classes"></select>
+    </div>
+    <br />
+    <div class="form-group mt-2">
+        <input type="submit" value="Assign" class="btn btn-success" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

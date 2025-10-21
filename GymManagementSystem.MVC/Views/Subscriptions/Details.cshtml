@@ -1,0 +1,16 @@
+﻿@model GymMs.DAL.GymMs.DAL.Entities.Subscription
+
+@{
+    ViewData["Title"] = "Subscription Details";
+}
+
+<h2>Subscription Details</h2>
+
+<div>
+    <p><strong>Member:</strong> @Model.Member?.FullName</p>
+    <p><strong>Type:</strong> @Model.Type</p>
+    <p><strong>Start:</strong> @Model.StartDate.ToShortDateString()</p>
+    <p><strong>End:</strong> @Model.EndDate.ToShortDateString()</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>

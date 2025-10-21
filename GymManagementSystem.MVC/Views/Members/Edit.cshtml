@@ -1,0 +1,51 @@
+﻿@model GymMs.DAL.GymMs.DAL.Entities.Member
+
+<h2>Edit Member</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+    <br />
+
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <br />
+
+
+    <div class="form-group">
+        <label asp-for="JoinDate"></label>
+        <input asp-for="JoinDate" type="date" class="form-control" />
+        <span asp-validation-for="JoinDate" class="text-danger"></span>
+    </div>
+    <br />
+
+
+    <div class="form-group">
+        <label asp-for="SubscriptionEnd"></label>
+        <input asp-for="SubscriptionEnd" type="date" class="form-control" />
+        <span asp-validation-for="SubscriptionEnd" class="text-danger"></span>
+    </div>
+    <br />
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

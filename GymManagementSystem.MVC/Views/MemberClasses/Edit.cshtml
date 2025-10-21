@@ -1,0 +1,25 @@
+﻿@model GymMs.DAL.GymMs.DAL.Entities.MemberClass
+
+@{
+    ViewData["Title"] = "Edit Assignment";
+}
+
+<h2>Edit Member-Class Assignment</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="MemberId" />
+    <input type="hidden" asp-for="GymClassId" />
+
+    <div class="form-group">
+        <label asp-for="MemberId" class="control-label">Member</label>
+        <select asp-for="MemberId" class="form-control" asp-items="ViewBag.Members"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="GymClassId" class="control-label">Class</label>
+        <select asp-for="GymClassId" class="form-control" asp-items="ViewBag.Classes"></select>
+    </div>
+    <div class="form-group mt-2">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

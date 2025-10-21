@@ -1,0 +1,23 @@
+﻿@model GymMs.DAL.GymMs.DAL.Entities.Subscription
+
+@{
+    ViewData["Title"] = "Delete Subscription";
+}
+
+<h2>Delete Subscription</h2>
+
+<p>Are you sure you want to delete this subscription?</p>
+
+<div>
+    <p><strong>Member:</strong> @Model.Member?.FullName</p>
+    <p><strong>Type:</strong> @Model.Type</p>
+    <p><strong>Start:</strong> @Model.StartDate.ToShortDateString()</p>
+    <p><strong>End:</strong> @Model.EndDate.ToShortDateString()</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

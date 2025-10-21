@@ -1,0 +1,31 @@
+﻿@model IEnumerable<GymMs.DAL.GymMs.DAL.Entities.Trainer>
+
+<h2>Trainers List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Trainer</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FullName)</th>
+            <th>@Html.DisplayNameFor(m => m.Specialty)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trainer in Model)
+        {
+            <tr>
+                <td>@trainer.FullName</td>
+                <td>@trainer.Specialty</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@trainer.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@trainer.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@trainer.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

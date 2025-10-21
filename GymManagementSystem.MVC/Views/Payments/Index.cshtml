@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GymMs.DAL.GymMs.DAL.Entities.Payment>
+
+@{
+    ViewData["Title"] = "Payments";
+}
+
+<h2>Payments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Payment</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Member</th>
+            <th>Subscription</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Method</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Subscription?.Member?.FullName</td>
+                <td>@item.Subscription?.Id</td>
+                <td>@item.Amount</td>
+                <td>@item.PaymentDate.ToShortDateString()</td>
+                <td>@item.Method</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GymMs.DAL.GymMs.DAL.Entities.Member>
+
+<h2>Members List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Member</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FullName)</th>
+            <th>@Html.DisplayNameFor(m => m.Email)</th>
+            <th>@Html.DisplayNameFor(m => m.JoinDate)</th>
+            <th>@Html.DisplayNameFor(m => m.SubscriptionEnd)</th>
+            <th>@Html.DisplayNameFor(m => m.IsActive)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.JoinDate.ToShortDateString()</td>
+                <td>@item.SubscriptionEnd.ToShortDateString()</td>
+                <td>@(item.IsActive ? "Active" : "Inactive")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
