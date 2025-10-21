@@ -361,3 +361,30 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# ASP.NET Core / EF
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.Local.json
+appsettings.Secrets.json
+
+# Database files (local dev)
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+# publish / output
+publish/
+wwwroot/lib/
+
+# user secrets (if used)
+secrets.json
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Local API/Dev ports (optional)
+*.pid
